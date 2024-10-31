@@ -1,0 +1,373 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  overflow-y: hidden;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+.bg-image {
+  position: absolute;
+  width: 544.18px;
+  height: 745.69px;
+  top: 10;
+  left: 265.41px;
+  transform: rotate(12.38deg);
+}
+
+.calculator {
+  background-color: #22252d;
+  width: 100%;
+  max-width: 375px;
+  min-height: 640px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1000;
+  margin-top: 40px;
+}
+
+.display {
+  min-height: 200px;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  color: white;
+  text-align: right;
+  flex: 1 1 0%;
+}
+
+.display .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.display .input {
+  width: 100%;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.display .output {
+  font-size: 2.5rem;
+  font-weight: 700;
+  width: 100%;
+  white-space: nowrap;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.display .operator {
+  color: #eb6666;
+}
+
+.display .brackets,
+.display .percent {
+  color: #26fed7;
+}
+
+.keys {
+  background-color: #292d36;
+  padding: 1.5rem;
+  border-radius: 1.5rem 1.5rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-gap: 1rem;
+  box-shadow: 0px -2px 16px rgba(0, 0, 0, 0.2);
+}
+
+.keys .key {
+  position: relative;
+  cursor: pointer;
+
+  display: block;
+  height: 0;
+  padding-top: 100%;
+  background-color: #262933;
+  border-radius: 50%;
+  transition: 0.2s;
+  user-select: none;
+}
+
+.keys .key span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.keys .key:hover {
+  box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+.keys .key.operator span {
+  color: #eb6666;
+}
+
+.keys .key.action span {
+  color: #26fed7;
+}
+
+.display .expression {
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.display .equal-sign {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin: 0;
+}
+
+.display .result {
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+.clear-history {
+  background-color: #dc3545;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 10px;
+}
+
+.clear-history:hover {
+  background-color: #c82333;
+}
+
+.clear-history:active {
+  background-color: #bd2130;
+}
+
+.display .separator {
+  border: 0.5px solid #76b0a1;
+  margin-top: 5px;
+}
+
+.outputline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.display .output.animated {
+  animation: scaleAnimation 0.3s ease forwards;
+}
+
+@keyframes scaleAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+* {
+  scrollbar-color: #888 #f1f1f1;
+  scrollbar-width: none;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.37);
+  border-top: 4px solid #ffffff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 0.6s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.warning-flag {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f44336;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.warning-flag.show {
+  opacity: 1;
+  transform: translate(-50%, 20px);
+  pointer-events: auto;
+}
+
+.success-flag {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4cf436;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.success-flag.show {
+  opacity: 1;
+  transform: translate(-50%, 20px);
+  pointer-events: auto;
+}
+.history-container {
+  position: absolute;
+  top: 0;
+  right: -320px;
+  width: 300px;
+  height: 100%;
+  background-color: #222;
+  padding: 15px;
+  color: #fff;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  transition: right 0.3s ease;
+  overflow-y: auto;
+}
+
+.history-container.show {
+  right: 0px;
+}
+
+.history-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.history-toggle:hover {
+  background-color: #555;
+}
+
+.history-container.show {
+  right: 0;
+}
+
+.history-container.close {
+  right: -320px;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.history-header h2 {
+  font-size: 1.2rem;
+}
+
+.history-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.history-item {
+  padding: 10px;
+  border-bottom: 1px solid #444;
+  font-size: 1rem;
+  color: #ddd;
+}
+
+@keyframes open {
+  from {
+    right: -320px;
+  }
+  to {
+    right: 0;
+  }
+}
+
+@keyframes close {
+  from {
+    right: 0;
+  }
+  to {
+    right: -320px;
+  }
+}
+
+.show {
+  animation: open 0.3s forwards;
+}
+
+.close {
+  animation: close 0.3s forwards;
+}
+
+#historyList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#historyList li {
+  padding: 20px 0;
+  border-bottom: 1px solid #26fed7;
+}
+
+#historyList li:last-child {
+  border-bottom: none;
+}
