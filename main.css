@@ -12,6 +12,7 @@
   align-items: center;
   height: 100vh;
   position: relative;
+  overflow-x: hidden;
 }
 
 .bg-image {
@@ -21,6 +22,12 @@
   top: 10;
   left: 265.41px;
   transform: rotate(12.38deg);
+}
+
+@media (max-width: 700px) {
+  .bg-image {
+    display: none;
+  }
 }
 
 .calculator {
@@ -94,11 +101,12 @@
 .keys .key {
   position: relative;
   cursor: pointer;
-
+  background: white;
+  color: white;
   display: block;
   height: 0;
   padding-top: 100%;
-  background-color: #262933;
+  /* background-color: #262933; */
   border-radius: 50%;
   transition: 0.2s;
   user-select: none;
@@ -111,7 +119,11 @@
   transform: translate(-50%, -50%);
   font-size: 1.25rem;
   font-weight: 700;
-  color: #fff;
+  color: black;
+}
+
+#opr {
+  background-color: #74EBD5;
 }
 
 .keys .key:hover {
@@ -119,11 +131,11 @@
 }
 
 .keys .key.operator span {
-  color: #eb6666;
+  color: white;
 }
 
 .keys .key.action span {
-  color: #26fed7;
+  color: white;
 }
 
 .display .expression {
