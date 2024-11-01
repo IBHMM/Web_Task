@@ -159,14 +159,22 @@ function enableButtons() {
 }
 
 function evaluateExpression(input) {
-  try {
-	input = prepareInput(input);
-	return eval(input);
-  } catch {
-	showWarning("Invalid input! Please check your expression.");
-	return "";
+	try {
+	  input = prepareInput(input);
+	  const result = eval(input);
+  
+	  if (isNaN(result)) {
+		showWarning("Invalid result! Please check your expression.");
+		return "";
+	  }
+	  
+	  return result;
+	} catch {
+	  showWarning("Invalid input! Please check your expression.");
+	  return "";
+	}
   }
-}
+  
 
 function cleanInput(input) {
   return input.replace(/\*/g, `x`).replace(/\//g, `÷`);
