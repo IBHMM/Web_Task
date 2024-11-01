@@ -12,6 +12,7 @@
   align-items: center;
   height: 100vh;
   position: relative;
+  overflow-y: hidden;
 }
 
 .bg-image {
